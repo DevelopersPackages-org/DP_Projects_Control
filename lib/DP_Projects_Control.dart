@@ -12,17 +12,22 @@ main(List<String> args) {
   });
 }
 /*
+Valid Commands:
 [.man]
 ghq <cmd-name> :{cmdctl <cmd-name>}
     login
     exit
 cmdctl <cmd-name>
-proictl create <priority::def->0>
-        del
-        chown
-        chmod
-        chpri <new-priority>
-        show
+proictl create <proi-name> <proi-addr> <proi-field> <priority::def->0>   create a project
+        del <proi-addr>                                      delete a project
+        chown <proi-addr>
+        chmod <proi-addr> <to-user-name> <to-user-num>        add/remove user to/from a project
+        chfie <proi-addr> <proi-field>
+        chpri <proi-addr> <new-priority>                      change priority
+        addfie <field-name> <priority::def->0>
+        chfie <old-field-name> <new-field-name> <priority::def->0>
+        delfie <field-name>
+        show                                                  show list of all projects
 rolectl make <role-name> <permissions>
         del <role-name>
         add <role-name> <to-user-name> <to-user-num>
@@ -51,5 +56,7 @@ proilist := {proictl show}
 manlist := {userlist show -man}
 help
 
+
+※各種リストではfield.priority＞field.name>project.priorotyの順でプロジェクトが整列される
 */
 void filectl

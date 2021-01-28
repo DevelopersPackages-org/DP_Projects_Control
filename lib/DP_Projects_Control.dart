@@ -1,3 +1,5 @@
+inport "pakage:src/shell.dart"
+inport "pakage:src/dataobj.dart"
 
 main(List<String> args) {
   Nyxx bot = Nyxx(const String.fromEnvironment('dpproictltoken'));
@@ -5,7 +7,16 @@ main(List<String> args) {
   final String prefix_man = "#";
   final String prefix_usr = "$";
 
+
+  bot.onReady.listen((ReadyEvent e) {
+    print("Ready!");
+  });
   bot.onMessageReceived.listen((event) {
+    String prefix_this = event.message.content.substring(,);
+    String command_this = event.message.content.substring(,);
+    if (event.message.content == "!ping") {
+      event.message.channel.send(content: "Pong!");
+    }
     if (event.message.content == "!ping") {
       event.message.channel.send(content: "Pong!");
     }
@@ -14,10 +25,12 @@ main(List<String> args) {
 /*
 Valid Commands:
 [.man]
-ghq <cmd-name> :{cmdctl <cmd-name>}
+ghq <cmd> :{<cmd>}
     login
     exit
-cmdctl <cmd-name>
+cmdctl <cmd-name> (<cmds>)    set cmd aleas
+let <var-name>=<atai>  set environment variants
+var :={let, cause GlobalVariantErr}
 proictl create <proi-name> <proi-addr> <proi-field> <priority::def->0>   create a project
         del <proi-addr>                                      delete a project
         chown <proi-addr>
@@ -51,12 +64,17 @@ mkproi <proi-name> <proi-addr> := {proictl make <proi-name> <proi-addr> <proi-ow
 usermod retire <manager|moderator|security>
 
 [.gen]
-sudo <cmd-name>
+sudo <cmd>
 proilist := {proictl show}
 manlist := {userlist show -man}
 help
 
-
+~<nr> 引数
+!<name> 環境変数
+|　依存直列
+>  データ流し込み
+&  並列タスク
+;  直列タスク
 ※各種リストではfield.priority＞field.name>project.priorotyの順でプロジェクトが整列される
 */
-void filectl
+void filectl(){}

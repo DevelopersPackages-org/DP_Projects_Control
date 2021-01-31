@@ -1,8 +1,9 @@
-inport "pakage:src/shell.dart"
-inport "pakage:src/dataobj.dart"
+import "pakage:/src/shell.dart";
+import "pakage:/src/dataobj.dart";
+import "package:nyxx/nyxx.dart";
 
 main(List<String> args) {
-  Nyxx bot = Nyxx(const String.fromEnvironment('dpproictltoken'));
+  var bot = Nyxx(const String.fromEnvironment('dpproictltoken'));
 
   final String prefix_man = "#";
   final String prefix_usr = "$";
@@ -12,12 +13,16 @@ main(List<String> args) {
     print("Ready!");
   });
   bot.onMessageReceived.listen((event) {
-    String prefix_this = event.message.content.substring(,);
-    String command_this = event.message.content.substring(,);
-    if (event.message.content == "!ping") {
+    List<String> command_this = event.message.content.split(" ");
+    String prefix_this = command_this[0];
+    
+    if (prefix_this == prefix_man) {
       event.message.channel.send(content: "Pong!");
     }
-    if (event.message.content == "!ping") {
+    else if (prefix_this == prefix_usr) {
+      event.message.channel.send(content: "Pong!");
+    }
+    else{
       event.message.channel.send(content: "Pong!");
     }
   });
